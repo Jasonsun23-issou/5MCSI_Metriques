@@ -1,100 +1,129 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Contactez-nous</title>
+    <title>Mes Contacts</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             margin: 0;
             padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
 
-        .container {
-            width: 60%;
-            margin: 50px auto;
+        .contact-list {
             background-color: white;
-            padding: 20px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            width: 100%;
+            max-width: 600px;
         }
 
         h1 {
-            text-align: center;
-            color: #333;
-        }
-
-        label {
-            font-weight: bold;
-            display: block;
-            margin: 15px 0 5px;
-            color: #555;
-        }
-
-        input, textarea {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-
-        textarea {
-            height: 150px;
-            resize: none;
-        }
-
-        button {
-            background-color: #5cb85c;
+            background-color: #4CAF50;
             color: white;
-            padding: 15px 20px;
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+        }
+
+        .contact {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+            transition: background-color 0.3s;
+        }
+
+        .contact:last-child {
+            border-bottom: none;
+        }
+
+        .contact:hover {
+            background-color: #f0f0f0;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .name {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .email {
+            font-size: 14px;
+            color: #888;
+        }
+
+        .contact-action {
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-action button {
+            background-color: #4CAF50;
+            color: white;
             border: none;
+            padding: 10px;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s;
         }
 
-        button:hover {
-            background-color: #4cae4c;
+        .contact-action button:hover {
+            background-color: #45a049;
         }
 
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-footer {
-            text-align: center;
-        }
     </style>
 </head>
+
 <body>
-    <div class="container">
-        <h1>Contactez-nous</h1>
-        <form action="#" method="POST">
-            <div class="form-group">
-                <label for="name">Nom complet</label>
-                <input type="text" id="name" name="name" placeholder="Votre nom complet" required>
+
+    <div class="contact-list">
+        <h1>Mes Contacts</h1>
+
+        <div class="contact">
+            <div class="contact-info">
+                <span class="name">John Doe</span>
+                <span class="email">john.doe@example.com</span>
             </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="Votre email" required>
+            <div class="contact-action">
+                <button>Appeler</button>
             </div>
-            <div class="form-group">
-                <label for="subject">Objet</label>
-                <input type="text" id="subject" name="subject" placeholder="Objet du message" required>
+        </div>
+
+        <div class="contact">
+            <div class="contact-info">
+                <span class="name">Jane Smith</span>
+                <span class="email">jane.smith@example.com</span>
             </div>
-            <div class="form-group">
-                <label for="message">Message</label>
-                <textarea id="message" name="message" placeholder="Votre message" required></textarea>
+            <div class="contact-action">
+                <button>Appeler</button>
             </div>
-            <div class="form-footer">
-                <button type="submit">Envoyer</button>
+        </div>
+
+        <div class="contact">
+            <div class="contact-info">
+                <span class="name">Alice Dupont</span>
+                <span class="email">alice.dupont@example.com</span>
             </div>
-        </form>
+            <div class="contact-action">
+                <button>Appeler</button>
+            </div>
+        </div>
+
     </div>
+
 </body>
+
 </html>
