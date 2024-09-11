@@ -80,6 +80,9 @@ def show_commits():
     
     return jsonify(commits_minutes=commits_minutes)
 
+@app.route('/commits_graphique/')
+def commits_graphique():
+    return render_template('commits_graphique.html')
 
 if __name__ == "__main__":
   app.run(debug=True)
