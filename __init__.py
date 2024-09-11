@@ -1,6 +1,7 @@
 from flask import Flask, render_template_string, render_template, jsonify
 from flask import render_template
 from flask import json
+from flask import jsonify
 from datetime import datetime
 from urllib.request import urlopen
 import sqlite3
@@ -49,6 +50,11 @@ def show_commits():
         commits_minutes.append(minutes.get_json()['minutes'])  # Convertir en JSON et extraire les minutes
     
     return jsonify(commits_minutes=commits_minutes)
+
+@app.route('/commits_graphique/')
+def commits_graphique():
+    return render_template('commits_graphique.html')
+
 
 @app.route('/extract-minutes/<date_string>')
 def extract_minutes(date_string):
