@@ -58,9 +58,28 @@ def commits_graphique():
 
 @app.route('/extract-minutes/<date_string>')
 def extract_minutes(date_string):
-        date_object = datetime.strptime(date_string, '%Y-%m-%dT%H:%M:%SZ')
+    date_object = datetime.strptime(date_string, '%Y-%m-%dT%H:%M:%SZ')
+    minutes = date_object.minute
+    return jsonify({'minutes': minutes})
+
+import json
+
+@app.route('/commits/')
+def show_commits():
+    # Charger les données des commits à partir du fichier ou de l'API
+    with open('commit.txt') as file:
+        commits_data = json.load(file)
+    
+    commits_minutes = []
+    for commit in commits_data:
+        commit_date = commit['commit']['author']['date']
+        # Extraire les minutes à partir de la date
+        date_object = datetime.strptime(commit_date, '%Y-%m-%dT%H:%M:%SZ')
         minutes = date_object.minute
-        return jsonify({'minutes': minutes})
+        commits_minutes.append(minutes)
+    
+    return jsonify(commits_minutes=commits_minutes)
+
 
 if __name__ == "__main__":
   app.run(debug=True)
