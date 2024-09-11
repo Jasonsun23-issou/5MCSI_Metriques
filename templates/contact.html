@@ -24,6 +24,7 @@
             overflow: hidden;
             width: 100%;
             max-width: 600px;
+            padding: 20px;
         }
 
         h1 {
@@ -84,6 +85,46 @@
             background-color: #45a049;
         }
 
+        .contact-form {
+            margin-top: 20px;
+            padding: 15px;
+            border-top: 1px solid #ddd;
+        }
+
+        .contact-form h2 {
+            margin-top: 0;
+            font-size: 24px;
+            color: #4CAF50;
+        }
+
+        .contact-form label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .contact-form input, 
+        .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .contact-form button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .contact-form button:hover {
+            background-color: #45a049;
+        }
     </style>
 </head>
 
@@ -122,6 +163,22 @@
             </div>
         </div>
 
+        <!-- Nouvelle section : Me contacter -->
+        <div class="contact-form">
+            <h2>Me Contacter</h2>
+            <form action="mailto:your-email@example.com" method="post" enctype="text/plain">
+                <label for="name">Nom :</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email :</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="message">Message :</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+
+                <button type="submit">Envoyer</button>
+            </form>
+        </div>
     </div>
 
 </body>
