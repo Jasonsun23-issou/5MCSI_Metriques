@@ -5,10 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Graphique à colonne</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        canvas {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
 
-<canvas id="temperatureChart" width="400" height="200"></canvas>
+<h1>Températures Horaire</h1>
+<canvas id="temperatureChart" width="800" height="400"></canvas>
 
 <script>
     // Données fournies
@@ -79,15 +101,44 @@
             datasets: [{
                 label: 'Température (°C)',
                 data: temperatures,
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                backgroundColor: 'rgba(75, 192, 192, 0.6)',
                 borderColor: 'rgba(75, 192, 192, 1)',
                 borderWidth: 1
             }]
         },
         options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top'
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(tooltipItem) {
+                            return `Température: ${tooltipItem.raw} °C`;
+                        }
+                    }
+                }
+            },
             scales: {
+                x: {
+                    ticks: {
+                        autoSkip: true,
+                        maxTicksLimit: 10,
+                        callback: function(value, index, values) {
+                            return index % 2 === 0 ? value : ''; // Afficher uniquement certaines dates pour éviter l'encombrement
+                        }
+                    }
+                },
                 y: {
-                    beginAtZero: false
+                    beginAtZero: false,
+                    ticks: {
+                        callback: function(value) {
+                            return `${value} °C`;
+                        }
+                    }
                 }
             }
         }
