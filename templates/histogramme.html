@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Graphique à colonne</title>
+    <title>Graphique à Colonne</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body {
@@ -16,10 +16,19 @@
             height: 100vh;
             background-color: #f4f4f4;
         }
-        canvas {
-            border: 1px solid #ddd;
+        #chart-container {
+            width: 90%;
+            max-width: 1200px;
+            height: 500px;
+            padding: 20px;
+            background-color: #fff;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        canvas {
+            display: block;
+            width: 100% !important;
+            height: auto !important;
         }
         h1 {
             text-align: center;
@@ -30,7 +39,9 @@
 <body>
 
 <h1>Températures Horaire</h1>
-<canvas id="temperatureChart" width="800" height="400"></canvas>
+<div id="chart-container">
+    <canvas id="temperatureChart"></canvas>
+</div>
 
 <script>
     // Données fournies
@@ -127,13 +138,22 @@
                     ticks: {
                         autoSkip: true,
                         maxTicksLimit: 10,
-                        callback: function(value, index, values) {
-                            return index % 2 === 0 ? value : ''; // Afficher uniquement certaines dates pour éviter l'encombrement
+                        callback: function(value, index) {
+                            // Afficher uniquement certaines dates pour éviter l'encombrement
+                            return index % 2 === 0 ? value : '';
                         }
+                    },
+                    title: {
+                        display: true,
+                        text: 'Date'
                     }
                 },
                 y: {
                     beginAtZero: false,
+                    title: {
+                        display: true,
+                        text: 'Température (°C)'
+                    },
                     ticks: {
                         callback: function(value) {
                             return `${value} °C`;
