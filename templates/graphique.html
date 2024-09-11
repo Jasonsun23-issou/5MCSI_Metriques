@@ -1,40 +1,98 @@
-<html>
-  <head>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
     <meta charset="UTF-8" />
-    <title>Metrique</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Métrique des Températures</title>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-  </head>
-  <body>
-    <div id="chart_div"></div>
-    <script>
-      google.charts.load('current', { packages: ['corechart'] });
-      google.charts.setOnLoadCallback(drawBackgroundColor);
-     function drawBackgroundColor() {
-    function drawChart(data) {
-    // Convertir les données récupérées en un tableau utilisable par Google Charts
-    var dataTable = new google.visualization.DataTable();
-    dataTable.addColumn('string', 'Date');
-    dataTable.addColumn('number', 'Valeur');
-    data.results.forEach(entry => {
-      var date = new Date(entry.Jour * 1000);
-      dataTable.addRow([date.toLocaleDateString(), entry.temp]);
-    });
-    // Configurer les options du graphique en ligne
-    var options = {
-      title: 'Évolution des températures de la ville de Tawarano',
-      curveType: 'function',
-      legend: { position: 'bottom' }
-    };
-    var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-    chart.draw(dataTable, options);
-  }
-  // Récupération de données depuis notre API /tawarano/
-  fetch('/tawarano/')
-    .then(response => response.json())
-    .then(data => {
-      drawChart(data);
-    })
-}
-    </script>
-  </body>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        #chart_div {
+            width: 90%;
+            max-width: 1200px;
+            height: 600px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Évolution des Températures</h1>
+<div id="chart_div"></div>
+
+<script>
+    google.charts.load('current', { packages: ['corechart'] });
+    google.charts.setOnLoadCallback(drawBackgroundColor);
+
+    function drawBackgroundColor() {
+        function drawChart(data) {
+            // Convertir les données récupérées en un tableau utilisable par Google Charts
+            var dataTable = new google.visualization.DataTable();
+            dataTable.addColumn('string', 'Date');
+            dataTable.addColumn('number', 'Température');
+
+            data.results.forEach(entry => {
+                var date = new Date(entry.Jour * 1000);
+                dataTable.addRow([date.toLocaleDateString('fr-FR'), entry.temp]);
+            });
+
+            // Configurer les options du graphique en ligne
+            var options = {
+                title: 'Évolution des Températures',
+                curveType: 'function',
+                legend: { position: 'bottom' },
+                hAxis: {
+                    title: 'Date',
+                    textStyle: {
+                        fontSize: 12,
+                        color: '#555'
+                    }
+                },
+                vAxis: {
+                    title: 'Température (°C)',
+                    textStyle: {
+                        fontSize: 12,
+                        color: '#555'
+                    },
+                    minValue: 0
+                },
+                colors: ['#ff5722'],
+                pointSize: 5,
+                backgroundColor: '#f9f9f9'
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+            chart.draw(dataTable, options);
+        }
+
+        // Récupération de données depuis notre API /tawarano/
+        fetch('/tawarano/')
+            .then(response => response.json())
+            .then(data => {
+                drawChart(data);
+            })
+            .catch(error => {
+                console.error('Erreur lors de la récupération des données:', error);
+            });
+    }
+</script>
+
+</body>
 </html>
