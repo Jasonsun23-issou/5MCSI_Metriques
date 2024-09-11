@@ -44,7 +44,7 @@ def extract_minutes(date_string):
     minutes = date_object.minute
     return jsonify({'minutes': minutes})
 
-@app.route('/commits/')
+@app.route('/commits-data/')
 def commits():
     url = 'https://api.github.com/repos/OpenRSI/5MCSI_Metriques/commits'
     response = requests.get(url)
@@ -62,6 +62,9 @@ def commits():
     
     return jsonify(results=results)
 
+@app.route("/commits/")
+def commits_page():
+    return render_template("commits.html")
 
 if __name__ == "__main__":
   app.run(debug=True)
