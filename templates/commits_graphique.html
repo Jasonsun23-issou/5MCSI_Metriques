@@ -1,7 +1,7 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>Commits</title>
+    <title>Minutes des Commits</title>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   </head>
   <body>
@@ -11,15 +11,13 @@
       google.charts.setOnLoadCallback(drawChart);
       
       function drawChart() {
-        // Récupère les données des commits
         fetch('/commits/')
           .then(response => response.json())
           .then(data => {
             var dataTable = new google.visualization.DataTable();
             dataTable.addColumn('string', 'Commit');
             dataTable.addColumn('number', 'Minutes');
-
-            // Ajouter les données récupérées
+            
             data.commits_minutes.forEach((minutes, index) => {
               dataTable.addRow([`Commit ${index+1}`, minutes]);
             });
