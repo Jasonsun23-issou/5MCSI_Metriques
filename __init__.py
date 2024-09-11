@@ -3,7 +3,6 @@ from flask import render_template
 from flask import json
 from datetime import datetime
 from urllib.request import urlopen
-import requests
 from collections import Counter
 import sqlite3
                                                                                                                                        
@@ -37,17 +36,11 @@ def mongraphique():
 def monhistogramme():
     return render_template("histogramme.html")
 
-@app.route('/extract-minutes/<date_string>')
-def extract_minutes(date_string):
-    date_object = datetime.strptime(date_string, '%Y-%m-%dT%H:%M:%SZ')
-    minutes = date_object.minute
-    return jsonify({'minutes': minutes})
-
 @app.route('/commits-data/')
-def commits():
+def commits_data():
     url = 'https://api.github.com/repos/OpenRSI/5MCSI_Metriques/commits'
-    response = requests.get(url)
-    commits_data = response.json()
+    response = urlopen(url)
+    commits_data = json.loads(response.read().decode('utf-8'))
     
     # Extraire les dates des commits
     commit_times = [commit['commit']['author']['date'] for commit in commits_data]
