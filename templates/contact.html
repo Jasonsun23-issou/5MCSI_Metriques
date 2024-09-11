@@ -7,7 +7,7 @@
     <title>Mes Contacts</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             background-color: #f4f4f4;
             margin: 0;
             padding: 0;
@@ -19,10 +19,9 @@
 
         .contact-list {
             background-color: white;
-            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            overflow: hidden;
-            width: 100%;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            width: 90%;
             max-width: 600px;
             padding: 20px;
         }
@@ -31,8 +30,9 @@
             background-color: #4CAF50;
             color: white;
             text-align: center;
-            padding: 20px;
-            margin: 0;
+            padding: 15px;
+            margin: -20px -20px 20px -20px;
+            border-radius: 8px 8px 0 0;
         }
 
         .contact {
@@ -48,7 +48,7 @@
         }
 
         .contact:hover {
-            background-color: #f0f0f0;
+            background-color: #f9f9f9;
         }
 
         .contact-info {
@@ -59,11 +59,12 @@
         .name {
             font-size: 18px;
             font-weight: bold;
+            color: #333;
         }
 
         .email {
             font-size: 14px;
-            color: #888;
+            color: #666;
         }
 
         .contact-action {
@@ -75,7 +76,7 @@
             background-color: #4CAF50;
             color: white;
             border: none;
-            padding: 10px;
+            padding: 8px 12px;
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s;
@@ -93,30 +94,32 @@
 
         .contact-form h2 {
             margin-top: 0;
-            font-size: 24px;
+            font-size: 22px;
             color: #4CAF50;
         }
 
         .contact-form label {
             display: block;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             font-weight: bold;
+            color: #333;
         }
 
         .contact-form input, 
         .contact-form textarea {
             width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
+            padding: 12px;
+            margin-bottom: 15px;
             border: 1px solid #ddd;
             border-radius: 5px;
+            box-sizing: border-box;
         }
 
         .contact-form button {
             background-color: #4CAF50;
             color: white;
             border: none;
-            padding: 10px;
+            padding: 12px;
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s;
